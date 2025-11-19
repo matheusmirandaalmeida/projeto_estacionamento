@@ -1,11 +1,13 @@
 package projeto_integrador.estacionamento.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.List;
 
 
 @Entity
+@Data
 public class Estacionamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,4 +23,5 @@ public class Estacionamento {
 
     @OneToMany(mappedBy = "estacionamento", cascade = CascadeType.ALL)
     private List<Vaga> vagas;
+
 }
