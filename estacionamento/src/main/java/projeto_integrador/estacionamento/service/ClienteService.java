@@ -8,13 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
-/**
- * Serviço de Clientes com lógica SIMULADA de registro (sem banco de dados).
- */
 @Service
 public class ClienteService {
 
-    // 🛑 ARMAZENAMENTO SIMULADO (EM MEMÓRIA)
     private static final List<Cliente> CLIENTES_CADASTRADOS = new ArrayList<>();
     // Simulador de sequência de ID
     private static final AtomicLong ID_SEQUENCE = new AtomicLong(0);
@@ -29,12 +25,8 @@ public class ClienteService {
             throw new RuntimeException("Email já cadastrado.");
         }
 
-        // --- 2. Simulação de persistência (Cria a entidade e a "salva") ---
-
-        // Simulação de hashing da senha (MUITO IMPORTANTE no projeto real)
         String senhaHasheada = "HASH_DE_" + request.getSenha().toUpperCase();
 
-        // Limpa CPF/Telefone para simular o formato de persistência
         String cpfLimpo = request.getCpf().replaceAll("[^0-9]", "");
         String telefoneLimpo = request.getTelefone().replaceAll("[^0-9]", "");
 
@@ -61,7 +53,7 @@ public class ClienteService {
         return novoCliente;
     }
 
-    // 🛑 NOVO: Método para retornar a lista de todos os clientes salvos em memória
+    //Método para retornar a lista de todos os clientes salvos em memória
     public List<Cliente> buscarTodosClientes() {
         return CLIENTES_CADASTRADOS;
     }

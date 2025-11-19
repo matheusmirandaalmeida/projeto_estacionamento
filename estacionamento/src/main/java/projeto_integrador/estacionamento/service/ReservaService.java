@@ -1,9 +1,7 @@
 package projeto_integrador.estacionamento.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import projeto_integrador.estacionamento.dto.ReservaRequest;
 import projeto_integrador.estacionamento.enuns.ReservaStatus;
 import projeto_integrador.estacionamento.enuns.VagaStatus;
 import projeto_integrador.estacionamento.entity.Cliente;
@@ -28,7 +26,7 @@ public class ReservaService {
     private final HorarioRepository horarioRepository; // <— adicionado
 
     @Transactional
-    public Reserva criar(ReservaRequest req) {
+    public Reserva criar(Reserva req) {
         if (req.inicio() == null || req.fim() == null)
             throw new ConflictException("Início e fim são obrigatórios");
         if (!req.fim().isAfter(req.inicio()))
